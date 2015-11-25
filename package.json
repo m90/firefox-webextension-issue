@@ -1,0 +1,32 @@
+{
+  "name": "firefox-webextension-issue",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Firefox Web Extension messaging issue",
+  "scripts": {
+    "build-popup": "node_modules/.bin/browserify ./app/popup.es6 -g [ babelify --presets [ es2015 ] ] > ./bundle/popup.js",
+    "build-background": "node_modules/.bin/browserify ./app/background.es6 -g [ babelify --presets [ es2015 ] ] > ./bundle/background.js",
+    "build": "npm run build-popup && npm run build-background",
+    "bundle": "npm run build && npm run bundle-chrome && npm run bundle-firefox",
+    "bundle-chrome": "node_modules/.bin/crx pack ./bundle -o dist/pingpong.crx",
+    "bundle-firefox": "cd ./bundle && zip -r ./../dist/pingpong.xpi ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m90/firefox-webextension-issue.git"
+  },
+  "author": "Frederik Ring <frederik.ring@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^6.0.15",
+    "babel-polyfill": "^6.1.4",
+    "babelify": "^7.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.1.4",
+    "babel-plugin-transform-react-jsx": "^6.1.4",
+    "babel-preset-es2015": "^6.1.4",
+    "browserify": "^12.0.1",
+    "crx": "^3.0.3"
+  }
+}

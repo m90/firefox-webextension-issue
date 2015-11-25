@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "firefox-webextension-issue",
+  "description": "find out what is going on re: messaging",
+  "version": "0.0.1",
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+  ],
+  "applications": {
+    "gecko": {
+      "id": "pingpong@frederikring.com",
+      "strict_min_version": "40.0.0"
+    }
+  }
+}
