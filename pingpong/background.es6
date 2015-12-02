@@ -1,4 +1,4 @@
-import listener from './listener.es6';
+import listener from './../shared/listener.es6';
 
 listener
 	.on('ping', () => {

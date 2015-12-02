@@ -1,4 +1,4 @@
-import emitter from './emitter.es6';
+import emitter from './../shared/emitter.es6';
 
 emitter
 	.send('ping')

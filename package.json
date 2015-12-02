@@ -4,12 +4,16 @@
   "version": "0.0.0",
   "description": "Firefox Web Extension messaging issue",
   "scripts": {
-    "build-popup": "node_modules/.bin/browserify ./app/popup.es6 -g [ babelify --presets [ es2015 ] ] > ./bundle/popup.js",
-    "build-background": "node_modules/.bin/browserify ./app/background.es6 -g [ babelify --presets [ es2015 ] ] > ./bundle/background.js",
-    "build": "npm run build-popup && npm run build-background",
-    "bundle": "npm run build && npm run bundle-chrome && npm run bundle-firefox",
-    "bundle-chrome": "node_modules/.bin/crx pack ./bundle -o dist/pingpong.crx",
-    "bundle-firefox": "cd ./bundle && zip -r ./../dist/pingpong.xpi ."
+    "build-pingpong-popup": "node_modules/.bin/browserify ./pingpong/popup.es6 -g [ babelify --presets [ es2015 ] ] > ./bundle/pingpong/popup.js",
+    "build-pingpong-background": "node_modules/.bin/browserify ./pingpong/background.es6 -g [ babelify --presets [ es2015 ] ] > ./bundle/pingpong/background.js",
+    "build-pingpong": "npm run build-pingpong-popup && npm run build-pingpong-background",
+    "build-backnforth-popup": "node_modules/.bin/browserify ./backnforth/popup.es6 -g [ babelify --presets [ es2015 ] ] > ./bundle/backnforth/popup.js",
+    "build-backnforth-background": "node_modules/.bin/browserify ./backnforth/background.es6 -g [ babelify --presets [ es2015 ] ] > ./bundle/backnforth/background.js",
+    "build-backnforth": "npm run build-backnforth-popup && npm run build-backnforth-background",
+    "build": "npm run build-backnforth && npm run build-pingpong",
+    "bundle-chrome": "node_modules/.bin/crx pack ./bundle/pingpong -o dist/pingpong.crx && node_modules/.bin/crx pack ./bundle/backnforth -o dist/backnforth.crx",
+    "bundle-firefox": "cd ./bundle/pingpong && zip -r ./../../dist/pingpong.xpi . && cd ./../backnforth && zip -r ./../../dist/backnforth.xpi .",
+    "bundle": "npm run build && npm run bundle-chrome && npm run bundle-firefox"
   },
   "repository": {
     "type": "git",
